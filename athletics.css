@@ -1,0 +1,172 @@
+@font-face{
+  font-family:"Edo";
+  src:url("fonts/edo.ttf") format("truetype");
+  font-display:swap;
+}
+
+:root{
+  --accent:#FDB827;
+  --bg:#090b10;
+  --bg2:#12161d;
+  --panel:rgba(255,255,255,.06);
+  --panel-2:rgba(255,255,255,.035);
+  --border:rgba(255,255,255,.12);
+  --text:#fff;
+  --muted:rgba(255,255,255,.72);
+  --shadow:0 18px 45px rgba(0,0,0,.34);
+  --radius:18px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;width:100%;height:100%}
+body.athletics-control{
+  background:
+    radial-gradient(circle at 10% 10%, rgba(253,184,39,.08), transparent 25%),
+    radial-gradient(circle at 80% 0%, rgba(255,255,255,.04), transparent 20%),
+    linear-gradient(180deg, #11151c, #090b10 60%);
+  color:var(--text);
+  font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+}
+body.athletics-overlay{background:transparent;overflow:hidden}
+
+.layout{display:grid;grid-template-columns:420px 1fr;gap:22px;max-width:1500px;margin:0 auto;padding:24px}
+.panel{
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(10px);
+}
+.sidebar{padding:22px;position:sticky;top:20px;height:fit-content}
+.main{padding:22px}
+.branding h1{margin:0;color:var(--accent);font-size:34px;line-height:1.05;font-family:"Edo", Impact, sans-serif;letter-spacing:1px}
+.branding p{margin:10px 0 0;color:var(--muted);line-height:1.45}
+.section{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08)}
+.section h2{margin:0 0 12px;font-size:16px;color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label.field{display:flex;flex-direction:column;gap:7px;font-weight:700;font-size:14px}
+label.field .fieldTitle{color:#fff}
+input,select{
+  width:100%;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.28);color:#fff;font-size:15px;outline:none;
+}
+input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(253,184,39,.18)}
+.buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+button{
+  padding:11px 15px;border-radius:14px;border:1px solid rgba(253,184,39,.4);cursor:pointer;
+  background:linear-gradient(180deg, rgba(253,184,39,.22), rgba(253,184,39,.1));color:#fff;font-weight:900;
+}
+button:hover{transform:translateY(-1px);background:linear-gradient(180deg, rgba(253,184,39,.3), rgba(253,184,39,.15))}
+.quickRow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.previewHeader{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px}
+.previewHeader h2{margin:0;color:#fff;font-size:24px}
+.previewHeader p{margin:4px 0 0;color:var(--muted)}
+.previewStage{
+  min-height:760px;border-radius:24px;border:1px solid rgba(255,255,255,.1);overflow:hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(253,184,39,.08), transparent 30%),
+    linear-gradient(180deg, #0d1016 0%, #080a0f 100%);
+  position:relative;padding:24px;
+}
+.previewCanvas{
+  position:absolute;inset:0;padding:26px;display:flex;align-items:flex-end;justify-content:center;
+}
+.note{margin-top:14px;color:var(--muted);line-height:1.5}
+
+.scorebugShell{
+  width:min(1540px, calc(100vw - 40px));
+  color:#fff;
+  font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+}
+.topline{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
+  margin:0 auto 10px;padding:0 8px;
+}
+.eventTitle{font-size:30px;font-weight:900;line-height:1;font-family:"Edo", Impact, sans-serif;letter-spacing:1px;color:var(--accent);text-shadow:0 4px 18px rgba(0,0,0,.4)}
+.eventSub{font-size:14px;color:rgba(255,255,255,.8);margin-top:6px}
+.statusPill{
+  padding:10px 16px;border-radius:999px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);
+  font-weight:900;letter-spacing:1px
+}
+.scorebugMain{
+  display:grid;grid-template-columns:1fr 280px 1fr;gap:10px;align-items:stretch;
+}
+.teamBlock,.middleBlock{
+  min-height:148px;border-radius:28px;border:1px solid rgba(255,255,255,.12);box-shadow:0 16px 40px rgba(0,0,0,.26);
+  backdrop-filter:blur(10px);
+}
+.teamBlock{
+  background:linear-gradient(180deg, rgba(7,10,16,.9), rgba(14,20,28,.82));
+  display:grid;grid-template-columns:110px 1fr 132px;align-items:center;padding:18px 20px;gap:16px;
+}
+.middleBlock{
+  background:linear-gradient(180deg, rgba(253,184,39,.18), rgba(253,184,39,.08));
+  padding:18px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+}
+.teamMark{
+  width:86px;height:86px;border-radius:22px;display:flex;align-items:center;justify-content:center;
+  font-size:32px;font-weight:900;background:linear-gradient(180deg, rgba(253,184,39,.25), rgba(253,184,39,.08));
+  border:1px solid rgba(253,184,39,.28);font-family:"Edo", Impact, sans-serif;color:var(--accent)
+}
+.teamFull{font-size:28px;font-weight:900;line-height:1.05}
+.teamShort{font-size:15px;color:rgba(255,255,255,.72);margin-top:6px;text-transform:uppercase;letter-spacing:1px}
+.scoreBox{
+  min-width:112px;height:100%;display:flex;align-items:center;justify-content:center;border-radius:22px;
+  background:rgba(255,255,255,.08);font-size:68px;font-weight:1000;letter-spacing:-2px
+}
+.sportTag{font-size:18px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:10px}
+.clockLine,.periodLine{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.clockLine span,.periodLine span{font-size:12px;letter-spacing:1.3px;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.clockLine strong,.periodLine strong{font-size:30px;line-height:1.1}
+.detailBar{
+  margin-top:10px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.1);border-radius:20px;
+  display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:0;overflow:hidden
+}
+.detailItem,.detailSponsor{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px}
+.detailItem + .detailItem,.detailSponsor{border-left:1px solid rgba(255,255,255,.08)}
+.detailItem span{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.72)}
+.detailItem strong,.detailSponsor{font-size:18px;font-weight:900}
+.detailSponsor{justify-content:flex-start;color:var(--accent)}
+
+.overlayWrap{position:fixed;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:24px}
+
+@media (max-width: 1180px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:relative;top:auto}
+}
+@media (max-width: 960px){
+  .grid,.quickRow,.scorebugMain,.detailBar{grid-template-columns:1fr}
+  .teamBlock{grid-template-columns:86px 1fr 100px}
+  .scoreBox{font-size:54px}
+  .previewStage{min-height:900px}
+}
+
+
+.hiddenSection{display:none}
+.compactField input{padding:10px 12px}
+.countGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.singleLineCounts{margin-top:6px}
+.runnerToggles{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.toggleChip{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);font-weight:700}
+.toggleChip input{width:auto;margin:0}
+.teamLogoImg{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
+.teamMarkText{font-family:"Edo", Impact, sans-serif;color:var(--accent);font-size:32px;font-weight:900}
+.isBaseball .detailBar{grid-template-columns:1.2fr .9fr 1.2fr}
+.baseballDetailBar{align-items:stretch}
+.baseballCountRow{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px}
+.countChip{min-width:72px;padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.countChip span{font-size:14px;font-weight:900;color:rgba(255,255,255,.72);letter-spacing:1.1px}
+.countChip strong{font-size:22px;font-weight:1000}
+.baseRunnerWrap{display:flex;align-items:center;justify-content:center;padding:10px 12px}
+.diamondField{position:relative;width:94px;height:94px;transform:rotate(45deg)}
+.base{position:absolute;width:24px;height:24px;border-radius:4px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.26);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.base.active{background:var(--accent);border-color:rgba(255,255,255,.75);box-shadow:0 0 0 4px rgba(253,184,39,.18),0 4px 14px rgba(0,0,0,.35)}
+.homePlate{left:35px;bottom:-2px;width:22px;height:22px;opacity:.55}
+.firstBase{right:0;top:35px}
+.secondBase{left:35px;top:0}
+.thirdBase{left:0;top:35px}
+
+@media (max-width: 960px){
+  .countGrid{grid-template-columns:1fr}
+  .isBaseball .detailBar{grid-template-columns:1fr}
+}

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>STASIS Athletics Control</title>
+  <link rel="stylesheet" href="athletics.css" />
+</head>
+<body class="athletics-control">
+  <div id="athleticsControlRoot" class="layout">
+    <aside class="panel sidebar">
+      <div class="branding">
+        <h1>STASIS Athletics</h1>
+        <p>College athletics control panel with auto-sync, logo uploads, and a baseball / softball runner diamond.</p>
+      </div>
+
+      <div class="section">
+        <h2>Event Setup</h2>
+        <div class="grid">
+          <label class="field"><span class="fieldTitle">Sport</span>
+            <select id="sport">
+              <option value="basketball">Basketball</option>
+              <option value="volleyball">Volleyball</option>
+              <option value="soccer">Soccer</option>
+              <option value="baseball">Baseball / Softball</option>
+              <option value="wrestling">Wrestling</option>
+              <option value="generic">Generic Athletics</option>
+            </select>
+          </label>
+          <label class="field"><span class="fieldTitle">Accent Color</span><input id="accent" type="text" value="#FDB827" /></label>
+          <label class="field"><span class="fieldTitle">Event Title</span><input id="eventTitle" type="text" /></label>
+          <label class="field"><span class="fieldTitle">Venue / Location</span><input id="venue" type="text" /></label>
+          <label class="field" style="grid-column:1/-1"><span class="fieldTitle">Sponsor / Presented By</span><input id="sponsor" type="text" /></label>
+          <label class="field"><span class="fieldTitle">Status</span><input id="status" type="text" /></label>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Teams</h2>
+        <div class="grid">
+          <label class="field"><span class="fieldTitle">Home Team</span><input id="homeTeam" type="text" /></label>
+          <label class="field"><span class="fieldTitle">Away Team</span><input id="awayTeam" type="text" /></label>
+          <label class="field"><span class="fieldTitle">Home Abbr / Fallback</span><input id="homeAbbr" type="text" /></label>
+          <label class="field"><span class="fieldTitle">Away Abbr / Fallback</span><input id="awayAbbr" type="text" /></label>
+          <label class="field"><span class="fieldTitle">Home Logo Upload</span><input id="homeLogoUpload" type="file" accept="image/*" /></label>
+          <label class="field"><span class="fieldTitle">Away Logo Upload</span><input id="awayLogoUpload" type="file" accept="image/*" /></label>
+          <label id="homeScoreWrap" class="field"><span class="fieldTitle">Home Score</span><input id="homeScore" type="text" /></label>
+          <label id="awayScoreWrap" class="field"><span class="fieldTitle">Away Score</span><input id="awayScore" type="text" /></label>
+        </div>
+        <div class="buttons quickRow">
+          <button id="subHome">- Home</button>
+          <button id="swapTeams">Swap</button>
+          <button id="addHome">+ Home</button>
+          <button id="subAway">- Away</button>
+          <button id="fillDemo">Demo</button>
+          <button id="addAway">+ Away</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Game Logic</h2>
+        <div class="grid">
+          <label id="periodLabelWrap" class="field"><span class="fieldTitle">Period Label</span><input id="periodLabel" type="text" /></label>
+          <label id="periodValueWrap" class="field"><span class="fieldTitle">Period Value</span><input id="periodValue" type="text" /></label>
+          <label id="clockLabelWrap" class="field"><span class="fieldTitle">Clock Label</span><input id="clockLabel" type="text" /></label>
+          <label id="clockValueWrap" class="field"><span class="fieldTitle">Clock Value</span><input id="clockValue" type="text" /></label>
+          <label id="detail1LabelWrap" class="field"><span class="fieldTitle">Detail 1 Label</span><input id="detail1Label" type="text" /></label>
+          <label id="detail1ValueWrap" class="field"><span class="fieldTitle">Detail 1 Value</span><input id="detail1Value" type="text" /></label>
+          <label id="detail2LabelWrap" class="field"><span class="fieldTitle">Detail 2 Label</span><input id="detail2Label" type="text" /></label>
+          <label id="detail2ValueWrap" class="field"><span class="fieldTitle">Detail 2 Value</span><input id="detail2Value" type="text" /></label>
+        </div>
+        <div class="buttons">
+          <button id="prevPeriod">Prev</button>
+          <button id="nextPeriod">Next</button>
+          <button id="syncBtn">Sync From Overlay</button>
+          <button id="reset">Reset</button>
+          <button id="sendBtn">SEND TO OVERLAY</button>
+        </div>
+      </div>
+
+      <div id="baseballControls" class="section baseballSection hiddenSection">
+        <h2>Baseball / Softball</h2>
+        <div class="countGrid singleLineCounts">
+          <label class="field compactField"><span class="fieldTitle">Balls</span><input id="balls" type="number" min="0" max="4" /></label>
+          <label class="field compactField"><span class="fieldTitle">Strikes</span><input id="strikes" type="number" min="0" max="3" /></label>
+          <label class="field compactField"><span class="fieldTitle">Outs</span><input id="outs" type="number" min="0" max="3" /></label>
+        </div>
+        <div class="buttons quickRow baseballButtons">
+          <button id="subBall">- Ball</button>
+          <button id="addBall">+ Ball</button>
+          <button id="clearCount">Clear Count</button>
+          <button id="subStrike">- Strike</button>
+          <button id="addStrike">+ Strike</button>
+          <button id="clearOuts">Clear Outs</button>
+        </div>
+        <div class="runnerToggles">
+          <label class="toggleChip"><input id="runner1" type="checkbox" /> Runner on 1st</label>
+          <label class="toggleChip"><input id="runner2" type="checkbox" /> Runner on 2nd</label>
+          <label class="toggleChip"><input id="runner3" type="checkbox" /> Runner on 3rd</label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="panel main">
+      <div class="previewHeader">
+        <div>
+          <h2>Live Preview</h2>
+          <p>Auto-sync pushes updates every 5 seconds, so the control panel can stay open while the overlay updates on its own.</p>
+        </div>
+      </div>
+      <div class="previewStage">
+        <div id="previewMount" class="previewCanvas"></div>
+      </div>
+      <p class="note">Use <b>athletics-overlay.html</b> in vMix as the browser source and keep this control page open in Chrome. Baseball / softball now includes a live base runner diamond and separate balls, strikes, and outs.</p>
+    </main>
+  </div>
+  <script src="athletics.js"></script>
+</body>
+</html>
